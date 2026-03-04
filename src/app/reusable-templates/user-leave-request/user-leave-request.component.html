@@ -1,0 +1,43 @@
+<div class="leave-requests-container">
+    @for(leaveRequest of userLeaveRequestData; track leaveRequest){
+    <ngce-card [customStyles]="userRequestCardStyles">
+        <div class="leave-request-card">
+            <div class="user-details">
+                <div class="more-user-details">
+                    <div class="user-icon">
+                        {{leaveRequest.leave.user.first_name.charAt(0).toUpperCase()}}{{leaveRequest.leave.user.last_name.charAt(0).toUpperCase()}}
+                    </div>
+                    <div class="user-info">
+                        <h4>{{leaveRequest.leave.user.user_name}}</h4>
+                        <p>User ID: {{leaveRequest.leave.user.user_id}}</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="leave-details">
+                <p>{{leaveRequest.leave.start_date}} - {{leaveRequest.leave.end_date}}</p>
+                <span>{{leaveRequest.leave.leave_count}} Days </span>
+            </div>
+
+            <div class="leave-details">
+                <h5>{{leaveRequest.leave.leave_type}} Leave</h5>
+                <span>{{leaveRequest.leave.description}}</span>
+
+            </div>
+
+            <ngce-divider [layout]="'vertical'" [length]="'90%'" [customStyles]="{ 'margin-top':'3px',}"></ngce-divider>
+
+            <div class="leave-request-footer">
+                <ngce-button
+                    [customStyles]="{padding:'.265rem .375rem','background-color': 'rgb(254, 226, 226)','color': 'rgb(239, 68, 68)'}">
+                    <ngce-icon class="ngce-cancel-5" size="12px"></ngce-icon>Reject</ngce-button>
+                <ngce-button
+                    [customStyles]="{padding:'.225rem .375rem', 'background-color': 'rgb(220, 252, 231)','color': 'rgb(21, 128, 61)'}"><ngce-icon
+                        class="ngce-ok-6" size="12px"></ngce-icon> Approve</ngce-button>
+            </div>
+        </div>
+    </ngce-card>
+
+    }
+</div>

@@ -1,0 +1,15 @@
+/* Library styles - imported at top level */
+@import "../node_modules/@clarium/ngce-components/styles/styles.scss";
+@import "../node_modules/@clarium/ngce-icon/src/assets/ngce-icons/css/ngce-icon.css";
+
+/* No global font-family here - relying on shell's global Inter reset */
+
+/* Hide scrollbar - scoped as much as possible */
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

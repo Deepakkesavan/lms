@@ -1,0 +1,35 @@
+/* ngce-components styles for layout */
+@import "../../../../../node_modules/@clarium/ngce-components/styles/styles.scss";
+@import "../../../../../node_modules/@clarium/ngce-icon/src/assets/ngce-icons/css/ngce-icon.css";
+@import "../../../../../node_modules/@clarium/ngce-components/styles/_theme.scss";
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.tab-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--neutral-dark);
+  p {
+    font-size: 0.8rem;
+  }
+}
+
+.leave-details-container {
+  height: max-content;
+}
+
+@media (max-width: 400px) {
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+}

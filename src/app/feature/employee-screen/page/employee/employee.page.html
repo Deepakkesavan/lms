@@ -1,0 +1,38 @@
+<lms-popup></lms-popup>
+<div class="cardd-component-container" #cardComponentContainer>
+    <!-- left arrow icon to scroll left side -->
+    @if(enableLeftScroll()){
+    <div class="arrow left-arrow" (click)="scrollLeft()">
+        <ngce-icon class="ngce-left-circle-1" color="var(--color-gray-400)"></ngce-icon>
+    </div>
+    }
+
+    <!-- Scrollable Cards -->
+    <div class="cardd-container" #cardsScrollWrapper>
+        @for(data of leaveBalanceCardData(); track $index){
+        <lms-data-stat [cardData]="data" (click)="onCardClick(data.leaveType)"></lms-data-stat>
+        }
+    </div>
+
+    <!-- right arrow icon to scroll right side -->
+    @if(enableRightScroll()){
+    <div class="arrow right-arrow" (click)="scrollRight()">
+        <ngce-icon class="ngce-right-circle-1" color="var(--color-gray-400)"></ngce-icon>
+    </div>
+    }
+
+</div>
+
+<div class="leave-details-container">
+    <ngce-card [customStyles]="cardStyles">
+        <lms-leave-request [leaveDetails]="leaveDetails()" [leaveTypeColors]="leaveTypeColors()"
+            [holidays]="holidayDetails()" [leaveTypes]="leaveTypes()"></lms-leave-request>
+    </ngce-card>
+    <ngce-card [customStyles]="cardStyles">
+        <lms-latest-leaves [latestLeaves]="latestLeaves()" [leaveTypes]="leaveTypes()"
+            [approvalStatues]="approvalTypes()"></lms-latest-leaves>
+    </ngce-card>
+    <ngce-card [customStyles]="cardStyles">
+        <lms-holidays [holidays]="holidayDetails()"></lms-holidays>
+    </ngce-card>
+</div>

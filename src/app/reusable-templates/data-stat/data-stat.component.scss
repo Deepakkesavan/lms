@@ -1,0 +1,33 @@
+:host {
+  display: block;
+  overflow: visible !important;
+}
+
+.heading{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.head-icon {
+  padding: 0.7rem;
+  border-radius: 0.7rem;
+}
+
+.value {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+span {
+  font-size: 0.8rem;
+  color: grey;
+}
+
+p {
+  font-size: 0.8rem;
+  color: grey;
+}

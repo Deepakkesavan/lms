@@ -1,0 +1,200 @@
+/* Force Inter font for this component */
+:host {
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.calendar-container {
+  max-width: 500px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  border-radius: 8px;
+  padding-bottom: 1rem;
+  min-height: 340px; // keeps minimum height decent on large screens
+  height: auto; // auto height for no excess space
+
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+
+    span {
+      font-weight: bold;
+      font-size: 1.1rem;
+      text-align: center;
+      flex: 1;
+    }
+
+    ngce-button {
+      min-width: 34px;
+      height: 34px;
+      flex-shrink: 0;
+    }
+  }
+
+  .calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 7px;
+    padding: 0.8rem 0;
+    color: var(--text-secondary);
+  }
+
+  .calendar-weekday {
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.95rem;
+    padding: 0.4em 0;
+    line-height: 1.2;
+  }
+
+  .calendar-day {
+    padding: 0.35rem 0.1rem;
+    min-height: 38px;
+    min-width: 32px;
+    max-width: 48px;
+    margin: 0 auto;
+    cursor: pointer;
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    text-align: center;
+
+    &::ng-deep ngce-button.muted-day button {
+      color: var(--color-gray-400) !important;
+    }
+    
+    &::ng-deep ngce-button.active-day button {
+      color: var(--color-black) !important;
+    }
+
+    .date-button {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1rem;
+      margin: 0 auto;
+    }
+
+    .tooltip {
+      position: absolute;
+      bottom: 90%;
+      left: 20%;
+      transform: translateX(-50%);
+      z-index: 2;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+      font-size: 0.68rem;
+      white-space: nowrap;
+    }
+
+    &:hover .tooltip {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+}
+
+/* -------- Responsive styles ---------- */
+
+// Small tablets and below
+@media (max-width: 768px) {
+  .calendar-container {
+    max-width: 98vw;
+    min-height: 240px;
+    padding: 0.5rem 0.5rem 1rem;
+
+    .calendar-header span {
+      font-size: 1rem;
+    }
+
+    .calendar-days {
+      gap: 2px;
+    }
+
+    .calendar-weekday {
+      font-size: 0.86rem;
+      padding: 0.14em 0;
+    }
+
+    .calendar-day {
+      min-height: 30px;
+      min-width: 22px;
+      max-width: 34px;
+      padding: 0.22rem 0.1rem;
+      width: 30px;
+      height: 30px;
+
+      .date-button {
+        width: 22px;
+        height: 22px;
+        font-size: 0.85rem;
+      }
+
+      .tooltip {
+        font-size: 0.62rem;
+      }
+    }
+  }
+}
+
+// For phones (very small screens)
+@media (max-width: 480px) {
+  .calendar-container {
+    max-width: 100vw;
+    min-height: 180px;
+    padding: 0.25rem 0.1rem 1rem;
+
+    .calendar-header {
+      padding: 0 0.2rem;
+
+      ngce-button {
+        min-width: 28px;
+        height: 28px;
+        font-size: 1rem;
+      }
+
+      span {
+        font-size: 0.95rem;
+      }
+    }
+
+    .calendar-days {
+      gap: 1px;
+    }
+
+    .calendar-weekday {
+      font-size: 0.82rem;
+    }
+
+    .calendar-day {
+      min-height: 20px;
+      min-width: 14px;
+      max-width: 26px;
+      width: 20px;
+      height: 20px;
+      font-size: 0.78rem;
+
+      .date-button {
+        width: 16px;
+        height: 16px;
+        font-size: 0.77rem;
+      }
+
+      .tooltip {
+        font-size: 0.5rem;
+      }
+    }
+  }
+}

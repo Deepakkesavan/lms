@@ -1,0 +1,74 @@
+<div class="my-latest-leaves">
+  <div class="heading-container">
+    <h3><ngce-icon class="ngce-light-up" size="18px" color="rgb(95, 15, 64,0.7)"></ngce-icon> {{latestLeavesHeader}}
+    </h3>
+    <lms-menu [menuStyles]="menuStyle" [itemStyles]="itemStyle" (handleClick)="onItemSelected($event)"
+      [dropdownData]="menuItems" [appearence]="'outline'" [iconSize]="'13px'" iconName="ngce-filter-1"></lms-menu>
+  </div>
+  <div class="main-empty-container">
+    @if(filteredLeaves().length !== 0){
+    <div class="leave-container">
+      @for(leave of filteredLeaves(); track $index){
+      <ng-container [ngTemplateOutlet]="latestLeave"
+        [ngTemplateOutletContext]="{ leaveData: leave, index: $index }"></ng-container>
+      }
+    </div>
+    }
+    @else {
+    <div class="empty-data-container">
+      <div class="empty-data">
+        <ngce-icon name="database-3" size="75px"></ngce-icon>
+        <span>{{notFoundContent}}</span>
+      </div>
+    </div>
+    }
+  </div>
+</div>
+
+
+<ng-template #latestLeave let-data="leaveData" let-i='index'>
+  <ngce-card [customStyles]="cardStyles">
+    <div class="latest-leave">
+      <div class="latest-leave-info">
+        <span class="leave-type">{{getLeaveType(data.leaveTypeKey)}}</span>
+
+        <div [ngStyle]="statusAndMenuStyle">
+          <lms-status [status]="data.approvalStatusKey"></lms-status>
+          <!-- @if (hoverIndex ==i ) { -->
+          @if(data.approvalStatusKey === getApprovalStatuskeys().APPROVED || data.approvalStatusKey ===
+          getApprovalStatuskeys().PENDING){
+          <lms-menu [menuStyles]="menuStyle" [itemStyles]="itemStyle" [dropdownData]="approvalMenuItems"
+            [appearence]="'text'" [iconSize]="'18px'" [iconName]="'ngce-ellipsis-vert'" [iconColor]="'var(--color-gray-400)'"
+            (handleClick)="onLeaveItemSelected($event, i)"></lms-menu>
+          }
+          @else if(data.approvalStatusKey === getApprovalStatuskeys().Drafted){
+          <lms-menu [menuStyles]="menuStyle" [itemStyles]="itemStyle" [dropdownData]="draftMenuItems"
+            [appearence]="'text'" [iconSize]="'18px'" [iconName]="'ngce-ellipsis-vert'" [iconColor]="'var(--color-gray-400)'"
+            (handleClick)="onLeaveItemSelected($event, i, data)"></lms-menu>
+          }
+          <!-- } -->
+        </div>
+
+      </div>
+      <div class="latest-leave-dates">
+        <span>{{stripTime(data.startDate) | date: 'dd/MM/YYYY': 'en-IN'}} </span>
+        <hr style="background-color: aliceblue;"/>
+        <span>{{stripTime(data.endDate) | date: 'dd/MM/YYYY': 'en-IN'}} </span>
+      </div>
+      <div class="latest-leave-count">{{getDays(stripTime(data.startDate), stripTime(data.endDate))}} day(s)
+      </div>
+    </div>
+  </ngce-card>
+</ng-template>
+
+<ng-template #dialogContent>
+  <div class="st-container">
+    <span>{{cancelDialogContent}}</span>
+    <div class="buttons-container">
+      <ngce-button [variant]="'outline'" [customStyles]="confirmButtonStyle" [severity]="'success'"
+        (handleClick)="onActionClick(confirm)">{{confirm}}</ngce-button>
+      <ngce-button [variant]="'outline'" [customStyles]="keepRequestButtonStyle" [severity]="'info'"
+        (handleClick)="onActionClick(keepRequest)">{{keepRequest}}</ngce-button>
+    </div>
+  </div>
+</ng-template>

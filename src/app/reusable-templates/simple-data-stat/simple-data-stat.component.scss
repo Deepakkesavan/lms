@@ -1,0 +1,18 @@
+.content-styles {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1px 0;
+  line-height: 1.2;
+
+  p {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+}
+
+span {
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  font-weight: 550;
+}

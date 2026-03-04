@@ -1,0 +1,24 @@
+<div class="menu-wrapper">
+  @if(getAppearence() === "outline"){
+  <ngce-button class="button" [variant]="'outline'" [customStyles]="style" [icon]="true"
+    (handleClick)="toggleDropdown()" [ngceTooltip]="toolTipMessage()">
+    <ngce-icon [class]="iconName()" [size]="iconSize()"></ngce-icon>
+  </ngce-button>
+  }
+  @else {
+  <ngce-icon [class]="iconName()" [size]="iconSize()" (click)="toggleDropdown()" [ngStyle]="{cursor: 'pointer'}"
+    [color]="iconColor()"></ngce-icon>
+  }
+
+  @if (isOpen()) {
+  <ul class="menu-list" [class.dropdown-top]="direction() === 'top'" [class.dropdown-bottom]="direction() === 'bottom'"
+    [class.dropdown-left]="direction() === 'left'" [class.dropdown-right]="direction() === 'right'"
+    [ngStyle]="menuStyles()">
+    @for (item of dropdownData(); track item) {
+    <p [ngStyle]="itemStyles()" (click)="selectItem(item)">
+      {{ item }}
+    </p>
+    }
+  </ul>
+  }
+</div>

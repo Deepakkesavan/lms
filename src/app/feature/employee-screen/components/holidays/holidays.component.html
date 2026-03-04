@@ -1,0 +1,34 @@
+<div class="main-container">
+  <div class="heading-container">
+    <h3>
+      <ngce-icon class="ngce-light-up" size="18px" color="rgb(95, 15, 64,0.7)"></ngce-icon>
+      {{title}}
+    </h3>
+    <lms-menu [dropdownData]="menuItems" [menuStyles]="menuStyle" (handleClick)="onItemSelected($event)"
+      [appearence]="'outline'" [iconSize]="'13px'" iconName="ngce-filter-1" toolTipMessage="Filter Holidays"></lms-menu>
+  </div>
+  <div class="leave-container">
+    @if(filteredHolidays().length !==0){
+      @for(holiday of filteredHolidays(); track holiday.name){
+        <ngce-card [customStyles]="cardStyles">
+          <ngce-card-content>
+            <div>
+              <div class="leave">{{ holiday.name }}</div>
+              <div class="day-container">
+                <span>{{ holiday.date | date : "dd/MM/YYYY" : "en-IN" }}</span>
+              </div>
+            </div>
+          </ngce-card-content>
+        </ngce-card>
+        }
+    }
+    @else {
+      <div class="empty-data-container">
+        <div class="empty-data">
+          <ngce-icon name="database-3" size="75px"></ngce-icon>
+          <span>{{notFoundContent}}</span>
+        </div>
+      </div>
+    }
+  </div>
+</div>

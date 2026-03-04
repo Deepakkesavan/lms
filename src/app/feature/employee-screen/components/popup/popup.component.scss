@@ -1,0 +1,142 @@
+/* ================= ROOT ================= */
+:host {
+  display: block;
+  height: 100%;
+  background: #f8fafc; // light gray background
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* ================= TAB HEADER ================= */
+.tab-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--neutral-dark); // gray-800
+}
+
+.tabHeaderName {
+  margin: 0;
+  line-height: 1;
+}
+
+// /* ================= TAB CONTENT ================= */
+
+/* ================= APPLY LEAVE SECTION ================= */
+.apply-leave-styles {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  width: 100%;
+  height: 100%;
+}
+
+/* ================= FORM CONTAINER ================= */
+lms-apply-leave-form {
+  display: block;
+  // background: #ffffff;   
+  border-radius: 8px;
+  padding: 1.25rem;
+  // box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* ================= LEAVE STAT CARD ================= */
+lms-simple-data-stat {
+  display: block;
+  height: fit-content;
+  // background: #ffffff;
+  border-radius: 8px;
+  padding: 1rem;
+  // box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* ================= GRID ================= */
+lms-reusable-grid {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ================= DIALOG ================= */
+.dialog-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.form-container {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 1.25rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* ================= BUTTONS ================= */
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.form-buttons button {
+  min-width: 110px;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+}
+
+/* Draft button */
+.form-buttons button:first-child {
+  background: #e5e7eb; // gray-200
+  color: #374151;
+}
+
+.form-buttons button:first-child:hover {
+  background: #d1d5db;
+}
+
+/* Submit button */
+.form-buttons button:last-child {
+  background: #2563eb; // blue-600
+  color: #ffffff;
+}
+
+.form-buttons button:last-child:hover {
+  background: #1e40af;
+}
+
+.form-buttons button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1024px) {
+
+  .apply-leave-styles,
+  .dialog-container {
+    grid-template-columns: 1fr;
+  }
+
+  lms-simple-data-stat {
+    order: -1; // show stats on top in mobile
+  }
+}
+
+@media (max-width: 768px) {
+  ngce-tab-content {
+    padding: 0.75rem;
+  }
+
+  lms-apply-leave-form,
+  .form-container {
+    padding: 1rem;
+  }
+}

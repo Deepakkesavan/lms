@@ -1,0 +1,29 @@
+<div class="leave-request">
+  <div class="leave-request-header">
+    <h4>
+      <ngce-icon class="ngce-calendar-plus-o" size="14px" color="rgb(95, 15, 64,0.7)"></ngce-icon>
+      {{ leaveRequestHeader }}
+    </h4>
+    <ngce-button [variant]="'outline'" [animateStyle]="'colorSwitch-1'" (handleClick)="onRequestClick()">
+      <ngce-icon class="ngce-plus-1" size="15px"></ngce-icon>{{ leaveRequestButton }}
+    </ngce-button>
+  </div>
+
+  <div class="content">
+    <div class="calendar">
+      <lms-calendar [leaveBalanceData]="leaveBalance()" [leaveDetails]="leaveDetails()"
+        [publicHolidaysList]="holidays()" [leaveTypes]="leaveTypes()"></lms-calendar>
+    </div>
+  </div>
+
+  <div class="footer">
+    @for (item of leaveTypeColors(); track item.leaveType) {
+    <div class="container">
+      <div class="color-container" [style.background]="item.backgroundColor"></div>
+      <div class="leave-type">
+        {{ item.leaveType | titlecase }}
+      </div>
+    </div>
+    }
+  </div>
+</div>

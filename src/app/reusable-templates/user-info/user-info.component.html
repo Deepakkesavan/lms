@@ -1,0 +1,36 @@
+<ngce-card>
+  <div class="basic">
+    <div class="user-icon">
+      @if(data()?.firstName && data()?.lastName){
+      {{ data()?.firstName?.charAt(0)?.toUpperCase()
+      }}{{ data()?.lastName?.charAt(0)?.toUpperCase() }}
+      }@else if (data()?.lastName == undefined || null || '') {
+      {{ data()?.firstName?.charAt(0)?.toUpperCase()
+      }}{{ data()?.firstName?.charAt(1)?.toUpperCase() }}
+      }
+    </div>
+    <div class="basic-info">
+      <span class="name">{{ data()?.firstName }} {{ data()?.lastName }}</span>
+      <span class="size">{{ data()?.roleName }}</span>
+      <span class="size">{{ data()?.employeeId }}</span>
+    </div>
+  </div>
+  <div class="contact">
+    <div class="name">Contact:</div>
+    <div class="contact-info">
+      <div class="info">
+        <span class="size"
+          ><ngce-icon class="ngce-mail-1"></ngce-icon
+          >{{ data()?.emailId }}</span
+        >
+      </div>
+      @if(data()?.contactNumber){
+      <span class="size"
+        ><ngce-icon class="ngce-phone-3"></ngce-icon
+        >{{ data()?.contactNumber }}</span
+      >
+
+      }
+    </div>
+  </div>
+</ngce-card>

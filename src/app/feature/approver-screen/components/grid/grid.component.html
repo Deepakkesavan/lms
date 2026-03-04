@@ -1,0 +1,91 @@
+
+<ngce-grid  [config]="gridConfigComputed()"></ngce-grid>
+
+
+<!-- Custom templates for the grid -->
+
+<ng-template #status let-row='row'>
+    <span class="completed">
+        <ngce-button [variant]="'outline'" [customStyles]="{
+                'padding': '.5rem 1rem',
+                'border-radius': '.25rem',
+                'display': 'inline-flex',
+                'justify-content': 'center',
+                'align-items': 'center',
+                'margin-right': '.8rem',
+                'background-color': 'rgb(240, 253, 244)'
+                }" [icon]="true" [severity]="'success'" (handleClick)="onStatusClick(approve, row)">
+            <span>{{approve}}</span>
+        </ngce-button>
+    </span>
+    <span class="rejected">
+        <ngce-button [variant]="'outline'" [customStyles]="{
+                'padding': '.5rem 1rem',
+                'border-radius': '.25rem',
+                'display': 'inline-flex',
+                'justify-content': 'center',
+                'align-items': 'center',
+                }" [icon]="true" [severity]="'danger'" (handleClick)="onStatusClick(reject, row)">
+            <span>{{reject}}</span>
+        </ngce-button>
+    </span>
+
+</ng-template>
+
+<ng-template #startDate let-row='row'>
+    <span [ngStyle]="{'font-size': '.965rem'}">{{row.startDate | date: 'dd/MM/YYYY': 'en-IN'}}</span>
+</ng-template>
+
+<ng-template #endDate let-row='row'>
+    <span [ngStyle]="{'font-size': '.965rem'}">{{row.endDate | date: 'dd/MM/YYYY' : 'en-IN'}}</span>
+</ng-template>
+
+<!-- Dialog box context template -->
+<ng-template #dialogContent>
+    <div class="dialog-container">
+        @if (approvalStatus === approve) {
+        <div class="st-container">
+            <span>{{approveDialogContent}}</span>
+            <div class="buttons-container">
+                <ngce-button [variant]="'outline'" [customStyles]="{
+                        'padding': '.5rem 1rem',
+                        'border-radius': '.25rem',
+                        'display': 'inline-flex',
+                        'justify-content': 'center',
+                        'align-items': 'center',
+                    }" [severity]="'success'" (handleClick)="onActionClick(approve)">{{approve}}</ngce-button>
+                <ngce-button [variant]="'outline'" [customStyles]="{
+                        'padding': '.5rem 1rem',
+                        'border-radius': '.25rem',
+                        'display': 'inline-flex',
+                        'justify-content': 'center',
+                        'align-items': 'center',
+                    }" [severity]="'info'" (handleClick)="onActionClick(cancel)">{{cancel}}</ngce-button>
+            </div>
+        </div>
+        }
+        @else {
+        <div class="st-container">
+            <span>{{rejectDialogContent}}</span>
+            <div class="buttons-container">
+                <ngce-button [variant]="'outline'" [customStyles]="{
+                        'padding': '.5rem 1rem',
+                        'border-radius': '.25rem',
+                        'display': 'inline-flex',
+                        'justify-content': 'center',
+                        'align-items': 'center',
+                        'color': 'var(--color-danger) !important'
+                    }" [severity]="'danger'" (handleClick)="onActionClick(reject)">{{reject}}</ngce-button>
+                <ngce-button [variant]="'outline'" [customStyles]="{
+                        'padding': '.5rem 1rem',
+                        'border-radius': '.25rem',
+                        'display': 'inline-flex',
+                        'justify-content': 'center',
+                        'align-items': 'center',
+                        'color': 'var(--color-info) !important'
+                    }" [severity]="'info'" (handleClick)="onActionClick(cancel)">{{cancel}}</ngce-button>
+            </div>
+        </div>
+        }
+    </div>
+</ng-template>

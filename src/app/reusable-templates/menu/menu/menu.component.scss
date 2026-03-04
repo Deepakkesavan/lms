@@ -1,0 +1,69 @@
+/* ngce-components styles for layout */
+@import "../../../../../node_modules/@clarium/ngce-components/styles/styles.scss";
+@import "../../../../../node_modules/@clarium/ngce-icon/src/assets/ngce-icons/css/ngce-icon.css";
+@import "../../../../../node_modules/@clarium/ngce-components/styles/_theme.scss";
+
+.menu-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.menu-icon-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.menu-list {
+  position: absolute;
+  z-index: 1000;
+  background: var(--light-light) !important;
+  border: none !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  min-width: 150px;
+  max-width: 90vw;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  border-radius: 0.5rem;
+
+  padding: 0.5rem; /* 👈 Creates space between items and border */
+}
+
+.menu-list p {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  white-space: nowrap;
+  color: var(--text-primary) !important;
+  border-radius: 0.4rem; /* 👈 Slight rounding for hover */
+}
+
+.menu-list p:hover {
+  background-color: var(--border-subtle);
+}
+
+.dropdown-right {
+  left: 100%;
+  top: 0;
+  transform: translateX(-10%);
+}
+
+.dropdown-left {
+  right: 100%;
+  top: 0;
+  transform: translateX(10%);
+}
+
+.dropdown-bottom {
+  top: 100%;
+  left: 0;
+}
+
+.dropdown-top {
+  bottom: 100%;
+  left: 0;
+}
+
+::ng-deep ngce-button .button.text.active:hover {
+  background: none !important;
+}

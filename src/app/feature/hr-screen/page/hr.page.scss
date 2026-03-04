@@ -1,0 +1,131 @@
+/* ngce-components styles for layout */
+@import "../../../../../node_modules/@clarium/ngce-components/styles/styles.scss";
+@import "../../../../../node_modules/@clarium/ngce-icon/src/assets/ngce-icons/css/ngce-icon.css";
+@import "../../../../../node_modules/@clarium/ngce-components/styles/_theme.scss";
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.status-container {
+  width: 28%;
+}
+
+.chart-container {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(318px, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+
+.linear-div {
+  display: flex;
+  flex-flow: column wrap;
+  gap: 10px;
+
+  ::ng-deep ngce-chart canvas {
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 376px) {
+  .chart-container {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+
+    .linear-div {
+      ::ng-deep ngce-card {
+        height: 16rem !important;
+        width: 16rem !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 426px) {
+  .chart-container {
+    ::ng-deep ngce-card {
+      height: auto !important;
+    }
+
+    ::ng-deep ngce-select {
+      width: 3.9rem !important;
+    }
+  }
+
+  .linear-div {
+    &::ng-deep ngce-chart canvas {
+      margin-top: 2rem;
+    }
+  }
+}
+
+@media (min-width: 1103px) and (max-width: 1380px) {
+  .linear-div {
+    &::ng-deep ngce-chart canvas {
+      margin-top: 2.5rem;
+    }
+  }
+}
+
+@media (min-width: 1381px) {
+  ::ng-deep ngce-select {
+    width: auto !important;
+  }
+
+  .linear-div {
+    &::ng-deep ngce-chart canvas {
+      margin-top: 0rem;
+      height: 16rem !important;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .linear-div {
+    &::ng-deep ngce-card {
+      height: auto !important;
+    }
+  }
+
+  .chart-container {
+    &::ng-deep ngce-card {
+      height: auto !important;
+    }
+  }
+}
+
+.empty-data-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.empty-data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+  gap: 1rem;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.heading-container {
+  margin-top: 1rem;
+}
+
+.pending-container {
+  height: 28rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

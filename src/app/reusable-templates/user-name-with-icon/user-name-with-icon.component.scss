@@ -1,0 +1,40 @@
+@import url(../../shared/styles/common-styles.scss);
+.more-user-details {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  position: relative;
+}
+
+.more-user-details:hover {
+  cursor: pointer;
+}
+
+.user-details {
+  position: absolute;
+  top: 10px;
+  left: 70px;
+  background-color: white;
+  height: max-content;
+  display: none;
+  z-index: 1;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.content:hover + .user-details,
+.user-details:hover {
+  display: block;
+  cursor: pointer;
+}
+
+.info{
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 0px;
+}

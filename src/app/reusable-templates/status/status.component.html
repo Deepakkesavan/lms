@@ -1,0 +1,18 @@
+<div [ngClass]="['st', getStatusClassName()]">
+    @if(status().toLowerCase() === approved){
+        <ngce-icon class="ngce-check-2" color="rgb(34, 197, 94, 1)" size=".95rem"></ngce-icon>
+    }
+    @else if(status().toLowerCase() === pending){
+        <ngce-icon class="ngce-clock-8" color="rgb(234, 179, 8, 1)" size=".95rem"></ngce-icon>
+    }
+    @else if(status().toLowerCase() === rejected){
+        <ngce-icon class="ngce-cancel-5" color="rgb(239, 68, 68, 1)" size=".95rem"></ngce-icon>
+    }
+    @else if(status().toLowerCase() === cancelled){
+        <ngce-icon class="ngce-block-1" color="rgb(107, 114, 128)" size=".95rem"></ngce-icon>
+    }
+    @else if(status().toLowerCase() === draft){
+        <ngce-icon class="ngce-vector-pencil" color="rgb(59, 130, 246)" size=".95rem"></ngce-icon>
+    }
+    {{ status() | capitalize}}
+</div>

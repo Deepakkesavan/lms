@@ -1,0 +1,63 @@
+<div class="calendar-container">
+  <div class="calendar-header">
+    <ngce-button (handleClick)="navigateMonth('prev')" [customStyles]="{ backgroundColor: 'transparent' }">
+      <ngce-icon class="ngce-left-open-1" color="var(--primary)"></ngce-icon>
+    </ngce-button>
+    <span>{{ currentDate | date : "MMMM y" }}</span>
+    <ngce-button (handleClick)="navigateMonth('next')" [customStyles]="{ backgroundColor: 'transparent' }">
+      <ngce-icon class="ngce-right-open-1" color="var(--primary)"></ngce-icon>
+    </ngce-button>
+  </div>
+
+  <div class="calendar-days">
+    @for (day of days(); track $index) {
+    <div class="calendar-weekday">
+      {{ day }}
+    </div>
+    }
+
+    <!-- Empty spaces for the first day of the month -->
+    <!-- [].constructor(firstDayOfMonth()), will create a new array using the value returned by firstDayOfMonth(),
+         If firstDayOfMonth() returns 3 (Wednesday), it creates an empty array of length 3 -->
+    <!-- This code dynamically creates empty day cells in a calendar to represent the days 
+        from the previous month that appear before the first day of the current month -->
+
+    @for (i of [].constructor(firstDayOfMonth()); track $index) {
+    <div class="calendar-day"></div>
+
+    } @for (day of getDaysInMonthArray(); track $index) {
+    <div class="calendar-day" (mouseenter)="updateHoveredDate(day)" (mouseleave)="clearHoveredDate()"
+      [style.background]="getDayBackground(day)">
+      <ngce-button (handleClick)="onDateClick(day)" [variant]="'text'" [ngClass]="{
+        'muted-day': isNormalDay(day),
+        'active-day': isSpecialDay(day)
+      }">
+        {{ day.getDate() }}
+      </ngce-button>
+
+      <!-- Weekend tooltip -->
+      @if(isWeekend(day)) {
+      <div class="tooltip">
+        <lms-tooltip [toolTipText]="'weekend'"></lms-tooltip>
+      </div>
+      }@else if(isHoliday(day)){
+      <div class="tooltip">
+        <lms-tooltip [toolTipText]="'holiday'"></lms-tooltip>
+      </div>
+      }@else if(onWrh(day)){
+      <div class="tooltip">
+        <lms-tooltip [toolTipText]="'WFH'"></lms-tooltip>
+      </div>
+      }@else if(isDrafted(day)){
+      <div class="tooltip">
+        <lms-tooltip [toolTipText]="'Drafted'"></lms-tooltip>
+      </div>
+      }@else if(onLeave(day)){
+      <div class="tooltip">
+        <lms-tooltip [toolTipText]="'leave'"></lms-tooltip>
+      </div>
+      }
+    </div>
+    }
+  </div>
+</div>

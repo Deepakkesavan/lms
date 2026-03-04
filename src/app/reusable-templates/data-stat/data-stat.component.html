@@ -1,0 +1,32 @@
+<ngce-card [customStyles]="cardStyles">
+  <ngce-card-header [customStyles]="cardHeaderStyles">
+    <div class="heading">
+      <!-- Title -->
+      @if (data()?.title) {
+      <h3 class="heading">{{ data()?.title | titlecase }}</h3>
+      }
+      <!-- Card -Icon -->
+      @if (data()?.iconClassName) {
+      <ngce-icon [class]="data()?.iconClassName" class="head-icon" size="18px" [color]="data()?.iconColor"
+        [style.backgroundColor]="data()?.iconBackgroundColor"></ngce-icon>
+      }
+    </div>
+  </ngce-card-header>
+  <ngce-card-content [customStyles]="cardContentStyles">
+    <!-- Main content with count and either custom template or description -->
+    <!-- Count -->
+    @if (data()?.count !== undefined) {
+    <span class="value" [style.color]="data()?.iconColor">
+      {{ data()?.count }}
+    </span>
+    }
+    <!-- Custom Template -->
+    @if (data()?.customTemplate) { @if (isTemplateRef(data()?.customTemplate)) {
+    <ng-container *ngTemplateOutlet="data()?.customTemplate"></ng-container>
+    } @else {
+    <p>{{ data()?.customTemplate }}</p>
+    } }@else {
+    <p>No content available.</p>
+    }
+  </ngce-card-content>
+</ngce-card>

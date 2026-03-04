@@ -1,0 +1,60 @@
+.user-info {
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  padding: 10px;
+}
+.basic {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  margin: 0.5rem;
+}
+
+.user-icon {
+  background-color: rgba(11, 95, 239, 0.085);
+  color: rgba(11, 95, 239, 0.922);
+  font-weight: bold;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.name {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.size {
+  font-size: 12px;
+}
+
+.contact {
+  box-shadow: 0 0px 1px grey;
+  padding: 0 10px;
+  border-radius: 10px;
+  margin: 0.2rem;
+}
+
+.basic-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 10px;
+}
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  & ::ng-deep ngce-icon {
+    font-size: 12px;
+  }
+
+  span {
+    margin: 5px;
+  }
+}
+.info {
+  display: flex;
+}

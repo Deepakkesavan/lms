@@ -1,0 +1,92 @@
+<!-- Team members display component -->
+<div class="more-team-members-container">
+  <!-- Check if there are any team members -->
+  @if (teamMembersDataConfig.data.length) {
+  <div class="more-team-members">
+    <!-- Loop through team member initials and display them as icons -->
+    @for (initials of getTeamMemberInitials(); track trackByInitials(initials))
+    {
+    <span class="icon">{{ initials }}</span>
+    }
+
+    <!-- Show "+X" icon if there are more members than displayed -->
+    @if (teamMembersDataConfig.data.length > teamMemberIconsToDisplay()) {
+    <span class="icon">
+      <ngce-icon class="ngce-plus-1" size="10px"></ngce-icon>
+      <span class="plus-count">
+        {{ teamMembersDataConfig.data.length - teamMemberIconsToDisplay() }}
+      </span>
+    </span>
+    }
+  </div>
+
+  <!-- Show right arrow icon to open the full team member list -->
+  <ngce-icon class="ngce-right-circle" color="#BB8FCE" [style.cursor]="'pointer'"
+    (click)="openAllTeamMembers()"></ngce-icon>
+  }
+</div>
+
+<!-- Dialog content template for detailed team view -->
+<ng-template #teamMemberDetails>
+  <div class="team-details-container">
+    <!-- Toggle between list and grid views -->
+    <div class="button">
+      <ngce-button-toggle [activeStateLabel]="gridViewButton" [inactiveStateLabel]="listViewButton" variant="classic"
+        [raised]="true" [customStyles]="{ border: 'none'  }" (valueChange)="onViewToggle($event)"></ngce-button-toggle>
+    </div>
+
+    <!-- Render list or grid view based on toggle state -->
+    @if(detailedTeamMemberDataConfig.enableListView){
+    <ng-container *ngTemplateOutlet="listView"></ng-container>
+    } @else {
+    <ng-container *ngTemplateOutlet="gridView"></ng-container>
+    }
+  </div>
+</ng-template>
+
+<!-- Button content for list view toggle -->
+<ng-template #listViewButton>
+  <div class="view-toggle">
+    <ngce-icon class="ngce-list-bullet" size="12px"></ngce-icon>
+    <span>List View</span>
+  </div>
+</ng-template>
+
+<!-- Button content for grid view toggle -->
+<ng-template #gridViewButton>
+  <div class="view-toggle">
+    <ngce-icon class="ngce-grid" size="12px"></ngce-icon>
+    <span>Grid View</span>
+  </div>
+</ng-template>
+
+<!-- Template for rendering list view -->
+<ng-template #listView>
+  <div class="member-grid">
+    <ngce-grid [config]="memberDataGridConfig"></ngce-grid>
+  </div>
+</ng-template>
+
+<!-- Template for showing full name in the list view -->
+<ng-template #employeeFullName let-row="row">
+  <p>{{ row.firstName }} {{ row.lastName }}</p>
+</ng-template>
+
+<!-- Template for rendering grid view -->
+<ng-template #gridView>
+  <div class="team-members-grid">
+    @for (user of data(); track (user)) {
+    <div class="member-card" (mouseenter)="showDetails(user)" (mouseleave)="hideDetails()">
+      <div class="member-content">
+        <!-- Display user with initials/icon -->
+        <lms-user-name-with-icon [data]="user"></lms-user-name-with-icon>
+      </div>
+      <div class="member-details">
+        <!-- Show user info on hover -->
+        <lms-user-info [data]="selectedUser!"></lms-user-info>
+      </div>
+    </div>
+
+    }
+  </div>
+</ng-template>

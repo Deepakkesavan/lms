@@ -1,0 +1,47 @@
+<form [formGroup]="leaveForm">
+
+    <!-- Start Date -->
+    <label>Start Date *</label>
+    <input type="date" formControlName="startDate" />
+
+    <!-- End Date -->
+    <label>End Date *</label>
+    <input type="date" formControlName="endDate" />
+
+    <!-- Leave Type -->
+    <label>Leave Type *</label>
+    <select formControlName="leaveTypeValue">
+        <option value="">Select Leave Type</option>
+        <option *ngFor="let lt of leaveTypes()" [value]="lt.value">
+            {{ lt.value }}
+        </option>
+    </select>
+
+    <!-- Type -->
+    <!-- Leave Day Type -->
+    @if (showLeaveDayType()) {
+    <label>Type *</label>
+    <select formControlName="leaveDayTypeValue">
+        <option value="">Select Type</option>
+        <option *ngFor="let t of dayTypes" [value]="t.key">
+            {{ t.value }}
+        </option>
+    </select>
+    }
+
+
+    <!-- Reason -->
+    <label>Reason For Leave </label>
+    <textarea rows="4" formControlName="reason"></textarea>
+
+    @if(!viewOnly()){
+    <div class="form-buttons">
+        <button type="button" (click)="onSaveDraft()">Save as draft</button>
+        <ngce-button type="button" (click)="onSubmit()" [disabled]="disableSubmit">
+            Send Request
+        </ngce-button>
+    </div>
+    }
+
+
+</form>

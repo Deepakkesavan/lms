@@ -1,0 +1,48 @@
+<div class="card-container">
+  @for( data of approverCardTypes(); track data.title){
+  <lms-reusable-data-stat [data]="data"></lms-reusable-data-stat>
+  }
+</div>
+
+<div class="leave-details-container">
+  <ngce-tab-group [customStyles]="tagGroupStyles" (tabIndex)="getTabIndexNumber($event)">
+    @for(tab of tabArray; track tab){
+    <ngce-tab>
+      <ngce-tab-header>
+        <ng-container *ngTemplateOutlet="tabHeader; context: { tabData: tab }"></ng-container>
+      </ngce-tab-header>
+      <ngce-tab-content [customStyles]="{ color: 'black'}">
+        @if(tab.content === 'employeeLeaveRequests' && employeeLeaveRequests()){
+        <lms-grid [employeeLeaveRequestsData]="updatedLeaveRequests()"
+          [leaveCatalog]="updatedLeaveCatalog()"></lms-grid>
+        }@else if(tab.content === 'leaveHistory'){
+        }
+      </ngce-tab-content>
+    </ngce-tab>
+    }
+  </ngce-tab-group>
+</div>
+
+<ng-template #tabHeader let-tab="tabData">
+  <div class="tab-header">
+    <ngce-icon [class]="tab.headerIconClass" size="15px" color="rgb(234, 179, 8)"></ngce-icon>
+    <p>{{ tab.headerName }}</p>
+  </div>
+</ng-template>
+
+<!-- Templates to display on each card to see details of employees -->
+<ng-template #totalEmployee>
+  <lms-more-team-members [data]="totalEmployees()"></lms-more-team-members>
+</ng-template>
+
+<ng-template #availableEmployee>
+  <lms-more-team-members [data]="availableEmployees()"></lms-more-team-members>
+</ng-template>
+
+<ng-template #employeeOnLeave>
+  <lms-more-team-members [data]="employeesOnLeave()"></lms-more-team-members>
+</ng-template>
+
+<ng-template #employeesOnWRH>
+  <lms-more-team-members [data]="employeesOnWorkFromHome()"></lms-more-team-members>
+</ng-template>

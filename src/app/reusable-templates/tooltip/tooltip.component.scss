@@ -1,0 +1,28 @@
+
+.tooltip{
+    position: absolute;
+    top: -2.5rem;
+    left: 2.5rem;
+    transform: translateX(-45%);// Centers the tooltip horizontally by shifting it back 50% of its own width.
+    background: black;
+    color: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    border-radius: 0.7rem;
+    padding: 0.5rem;
+    pointer-events: none; // Ensures the tooltip doesn't block mouse interactions with elements below it.
+    transition: opacity 0.2s ease;
+    opacity: 1;
+    
+  }
+  
+  .tooltip-down-arrow {
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid black;
+  }

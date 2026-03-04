@@ -1,0 +1,110 @@
+<div class="card-container">
+  <div class="cards">
+    @for (data of hrCardTypes(); track data.title) {
+    <lms-reusable-data-stat [data]="data"></lms-reusable-data-stat>
+    }
+  </div>
+</div>
+
+<div class="chart-container">
+  <ngce-card [customStyles]="doughnutCardStyles">
+    <div [style]="cardHeadingStyles">
+      <span [style]="titleStyles">
+        <ngce-icon name="chart-pie" color="rgb(95, 15, 64,0.7)" size="18px"></ngce-icon>
+        {{empLeaveReportTitle}}</span>
+      <ngce-select [dataSource]="dropdownData" (valueChange)="onSelectOrgaisationValueChange($event)"
+        [(ngModel)]="doughnutKey" [customStyles]="dropdownStyles"></ngce-select>
+    </div>
+    <ngce-card-content [customStyles]="{
+            'margin-top': '2.5rem',
+            height: '85%'
+          }">
+      @if(checkDataEmpty(doughnutData())){
+      <div class="empty-data-container">
+        <ng-container [ngTemplateOutlet]="emptyData"></ng-container>
+      </div>
+      }@else {
+      <lms-doughnut [leaveData]="doughnutData()"></lms-doughnut>
+      }
+    </ngce-card-content>
+  </ngce-card>
+
+  <div class="linear-div">
+    <ngce-card [customStyles]="cardStyles">
+      <div [style]="cardHeadingStyles">
+        <span>
+          {{projectReportTitle}}</span>
+        <div [ngStyle]="dropdownLayoutStyles">
+          <ngce-select [dataSource]="dropdownData" [customStyles]="dropdownStyles" [ngModel]="projectPeriodKey()"
+            (valueChange)="onSelectProjectPeriodChange($event)"></ngce-select>
+          <ngce-select [fields]="{ text: 'value', value: 'value' }" [searchable]="true"
+            [dataSource]="projectDropDownData()" [ngModel]="project()" [customStyles]="dropdownStyles"
+            (valueChange)="onSelectProjectValueChange($event)"></ngce-select>
+        </div>
+      </div>
+
+      <ngce-card-content [customStyles]="{height: '78%'}">
+        @if(checkDataEmpty(projectData())){
+        <div class="empty-data-container">
+          <ng-container [ngTemplateOutlet]="emptyData"></ng-container>
+        </div>
+        }@else{
+        <lms-bar-chart [labels]="project()" [data]="projectData()"></lms-bar-chart>
+        }
+      </ngce-card-content>
+    </ngce-card>
+
+    <ngce-card [customStyles]="cardStyles">
+      <div [style]="cardHeadingStyles">
+        <span [style]="titleStyles">
+          <ngce-icon name="chart-bar" color="rgb(95, 15, 64,0.7)" size="18px"></ngce-icon>
+          {{lopTitle}}</span>
+        <div [ngStyle]="dropdownLayoutStyles">
+          <ngce-button [customStyles]="buttonStyles" variant="classic" (handleClick)="onClickNextMonths()">Next
+            Months</ngce-button>
+        </div>
+      </div>
+
+      <ngce-card-content>
+        <lms-line-chart [data]="lopLeaveData()" [labels]="labels"></lms-line-chart>
+      </ngce-card-content>
+    </ngce-card>
+  </div>
+
+  <ngce-card [customStyles]="pendingCardStyles">
+    <div class="heading-container">
+      <ngce-card-header [customStyles]="titleStyles">
+        <ngce-icon name="hourglass-2" color="rgb(95, 15, 64,0.7)" size="15px"></ngce-icon>
+        {{pendingTitle}}</ngce-card-header>
+    </div>
+    <ngce-card-content [customStyles]="pendingCardContentStyle">
+      @for (item of getPendingLeaves(); track $index) {
+      <lms-pending-approvals [data]="item"></lms-pending-approvals>
+      }
+      @empty {
+      <div class="pending-container">
+        <ng-container [ngTemplateOutlet]="emptyData"></ng-container>
+      </div>
+      }
+    </ngce-card-content>
+  </ngce-card>
+</div>
+
+<ng-template #leaveTemplate>
+  <lms-more-team-members [data]="this.employeesOnLeave()"></lms-more-team-members>
+</ng-template>
+
+<ng-template #wfhTemplate>
+  <lms-more-team-members [data]="this.employeesOnWorkFromHome()"></lms-more-team-members>
+</ng-template>
+
+<ng-template #specialLeavesTemplate>
+  <lms-more-team-members [data]="this.employeesOnSpecialLeave()"></lms-more-team-members>
+</ng-template>
+
+<ng-template #emptyData>
+  <div class="empty-data">
+    <ngce-icon name="database-3" size="75px"></ngce-icon>
+    <span>{{noDataTitle}}</span>
+  </div>
+</ng-template>

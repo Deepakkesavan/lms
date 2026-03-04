@@ -1,0 +1,10 @@
+<ngce-card [customStyles]="cardStyles">
+  <ngce-card-content [customStyles]="cardContentStyles">
+    @for(cont of content(); track $index){
+    <div class="content-styles">
+      <p>{{ cont.content }}</p>
+      <span>{{ cont.data }}</span>
+    </div>
+    }
+  </ngce-card-content>
+</ngce-card>

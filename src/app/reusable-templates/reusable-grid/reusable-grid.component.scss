@@ -1,0 +1,27 @@
+::ng-deep ngce-grid th {
+  background-color: rgba(235, 236, 240, 1) !important;
+}
+
+::ng-deep ngce-grid td {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+::ng-deep ngce-grid .grid-container {
+  border-radius: 0.4rem;
+}
+::ng-deep ngce-grid .header-cell {
+  color: #222222;
+  font-weight: bold;
+}
+
+::ng-deep ngce-grid .data_display {
+  font-size: 0.965rem !important;
+}
+
+.grid-container {
+  padding: 0 2rem;
+}
+
+::ng-deep ngce-grid table {
+  width: -webkit-fill-available;
+}

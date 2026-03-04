@@ -1,0 +1,15 @@
+:host {
+    display: block;
+}
+
+lms-main-layout {
+    /* Scoped library styles - only injected when this component loads */
+    @import "../../../../node_modules/@clarium/ngce-components/styles/styles.scss";
+    @import "../../../../node_modules/@clarium/ngce-icon/src/assets/ngce-icons/css/ngce-icon.css";
+    @import "../../../../node_modules/@clarium/ngce-components/styles/_theme.scss";
+
+    /* Ensure Inter font is used inside lms-main-layout (resetting any library fonts) */
+    * {
+        font-family: inherit !important;
+    }
+}

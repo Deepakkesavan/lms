@@ -1,0 +1,89 @@
+h4{
+    font-weight: bold;
+    font-size: 15px;
+}
+p{
+    color: grey;
+    font-size: 13px;
+}
+
+h5{
+    font-size: 16px;
+}
+.leave-details{
+    padding: .675rem .875rem;
+
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    
+   p{
+    font-weight: bold;
+   }
+   span{
+    color: grey;
+    font-size: 12px;
+   }
+   
+}
+.user-details{
+    display: flex;
+    padding: 15px 25px;
+    align-items: center;
+    justify-content: space-between;
+    .user-icon{
+        background-color: rgb(219, 234, 254);
+        color:rgb(37, 99, 235);
+        width: 41px;
+        height: 41px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        font-weight: bold;
+        margin-right: 10px;
+      
+    }
+    .more-user-details{
+        display: flex;
+        align-items: center;
+    }
+    .user-info{
+       p{
+        font-size: 13px;
+       }
+       
+        margin-right: 10px;
+    }
+    .required-days{
+        p{
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+    }
+
+    
+    
+}
+
+.leave-request-footer{
+    padding: 10px 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+}
+
+.leave-requests-container{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.leave-request-card{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 0.1fr 1fr;
+    grid-template-rows: repeat(5, 0.01fr);
+    padding: auto;
+}

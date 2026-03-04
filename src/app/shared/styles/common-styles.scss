@@ -1,0 +1,66 @@
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 50%;
+    background-color: rgba(11, 95, 239, 0.085);
+    color: rgba(11, 95, 239, 0.922);
+    font-size: 0.7rem;
+    font-weight: bold;
+    margin-left: -12px;
+}
+.holiday{
+    background-color: rgba(11, 95, 239, 0.085);
+    color: rgba(11, 95, 239, 0.922);
+}
+// Sick Leave
+.sick-leave {
+    background-color: #FFEBEE;
+    color: #D32F2F;
+  }
+  
+  // Casual Leave
+  .casual-leave {
+    background-color: #E3F2FD;
+    color: #1976D2;
+  }
+  
+  // Work From Home
+  .wfh-leave {
+    background-color: #E8F5E9;
+    color: #388E3C;
+  }
+  
+  // Holiday
+  .holiday-leave {
+    background-color: #FFF8E1;
+    color: #FFA000;
+  }
+  
+  // Maternity Leave
+  .maternity-leave {
+    background-color: #FCE4EC;
+    color: #C2185B;
+  }
+  
+  // Paternity Leave
+  .paternity-leave {
+    background-color: #E1F5FE;
+    color: #0288D1;
+  }
+  
+  // Privilege Leave
+  .privilege-leave {
+    background-color: #EDE7F6;
+    color: #7B1FA2;
+  }
+  
+  // Common styles for all leave types
+  .leave-style {
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    font-size: 14px;
+  }

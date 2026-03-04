@@ -1,0 +1,80 @@
+<!-- ================= APPLY LEAVE + HISTORY (CARD FLOW) ================= -->
+<ng-template #applyLeaveAndLeaveHistory>
+    <ngce-tab-group>
+        @for (tab of tabArray; track $index) {
+        <ngce-tab>
+            <ngce-tab-header [customStyles]="tabHeaderStyles">
+                <ng-container *ngTemplateOutlet="tabHeader; context: { tabData: tab }"></ng-container>
+            </ngce-tab-header>
+
+            <ngce-tab-content [customStyles]="tabContentStyles">
+                <!-- APPLY LEAVE TAB -->
+                @if (tab.content === 'applyLeave') {
+                <div class="apply-leave-styles">
+                    <lms-apply-leave-form [leaveTypes]="leaveTypes()" [initialValue]="existingLeaveDetails()"
+                        (saveDraft)="onSaveDraft($event)" (submit)="onFormSubmit($event)"
+                        (formValueChange)="onFormValueChange($event)" (leaveDaysChange)="requestedLeaveDays = $event"
+                        [showLeaveDayType]="showLeaveDayType()">
+                    </lms-apply-leave-form>
+
+                    @if (selectedLeaveType()) {
+                    <lms-simple-data-stat [data]="selectedLeaveTypeBalance()!" [leaveReqDays]="requestedLeaveDays">
+                    </lms-simple-data-stat>
+                    }
+                </div>
+                }
+
+                <!-- LEAVE HISTORY TAB -->
+                @else if (tab.content === 'fullLeaveHistory') {
+                <lms-reusable-grid [gridData]="allLeaveHistory()" [leaveTypes]="leaveTypes()"
+                    [approvalTypes]="approvalTypes()">
+                </lms-reusable-grid>
+                }
+            </ngce-tab-content>
+        </ngce-tab>
+        }
+    </ngce-tab-group>
+</ng-template>
+
+<!-- ================= TAB HEADER ================= -->
+<ng-template #tabHeader let-tab="tabData">
+    <div class="tab-header">
+        <ngce-icon [class]="tab.headerIconClass" size="15px" color="rgb(234, 179, 8)">
+        </ngce-icon>
+        <p class="tabHeaderName">{{ tab.headerName }}</p>
+    </div>
+</ng-template>
+
+<!-- ================= ADD LEAVE REQUEST (DIALOG) ================= -->
+<ng-template #addLeaveReqTemplate>
+    <div class="dialog-container">
+        <lms-apply-leave-form [leaveTypes]="leaveTypes()" [initialValue]="existingLeaveDetails()"
+            (saveDraft)="onSaveDraft($event)" (submit)="onFormSubmit($event)"
+            (formValueChange)="onFormValueChange($event)" (leaveDaysChange)="requestedLeaveDays = $event"
+            [showLeaveDayType]="showLeaveDayType()">
+        </lms-apply-leave-form>
+
+        @if (selectedLeaveType()) {
+        <lms-simple-data-stat [data]="selectedLeaveTypeBalance()!" [leaveReqDays]="requestedLeaveDays">
+        </lms-simple-data-stat>
+        }
+    </div>
+</ng-template>
+
+<!-- ================= EDIT / VIEW LEAVE REQUEST (DIALOG) ================= -->
+<ng-template #editLeaveReqTemplate>
+    <div class="dialog-container">
+        <div class="form-container">
+            <lms-apply-leave-form [leaveTypes]="leaveTypes()" [initialValue]="existingLeaveDetails()"
+                (saveDraft)="onSaveDraft($event,true )" (submit)="onFormSubmit($event)"
+                (formValueChange)="onFormValueChange($event)" (leaveDaysChange)="requestedLeaveDays = $event"
+                [showLeaveDayType]="showLeaveDayType()">
+            </lms-apply-leave-form>
+        </div>
+
+        @if (selectedLeaveType()) {
+        <lms-simple-data-stat [data]="selectedLeaveTypeBalance()!" [leaveReqDays]="requestedLeaveDays">
+        </lms-simple-data-stat>
+        }
+    </div>
+</ng-template>

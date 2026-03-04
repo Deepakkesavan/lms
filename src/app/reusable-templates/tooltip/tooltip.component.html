@@ -1,0 +1,7 @@
+<div class="tooltip">
+    @if(customTemplate()){
+    <ng-container *ngTemplateOutlet="customTemplate()"></ng-container>
+    }@else {
+    <p>{{toolTipText()}}</p>
+    }
+</div>

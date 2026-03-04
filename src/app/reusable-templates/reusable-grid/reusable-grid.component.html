@@ -1,0 +1,27 @@
+@if(gridData() && leaveTypes() && approvalTypes()){
+<div class="grid-container">
+    <ngce-grid [config]="gridConfig()!"></ngce-grid>
+</div>
+
+}
+
+<!-- Grid templates -->
+<ng-template #startDate let-row="row">
+    <span>{{
+        row.startDate | date : "dd/MM/YYYY" : "en-IN"
+        }}</span>
+</ng-template>
+
+<ng-template #endDate let-row="row">
+    <span>{{
+        row.endDate | date : "dd/MM/YYYY" : "en-IN"
+        }}</span>
+</ng-template>
+
+<ng-template #leaveType let-row="row">
+    <span>{{ getLeaveTypeValue(row.leaveTypeKey) }}</span>
+</ng-template>
+
+<ng-template #approvalStatus let-row="row">
+    <span>{{ getApprovalStatusValue(row.approvalStatusKey) }}</span>
+</ng-template>

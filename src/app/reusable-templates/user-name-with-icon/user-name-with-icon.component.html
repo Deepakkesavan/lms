@@ -1,0 +1,18 @@
+<div class="content">
+  <div class="icon">
+    <!-- Display initials: First letter of firstName + first letter of lastName -->
+    @if (data()?.firstName && data()?.lastName) {
+    {{ data()?.firstName?.charAt(0)?.toUpperCase() }}{{ data()?.lastName?.charAt(0)?.toUpperCase() }}
+    } @else if (data()?.firstName && (data()?.lastName == null || data()?.lastName === '')) {
+    <!-- If lastName is missing, display first two letters of firstName -->
+    {{ data()?.firstName?.charAt(0)?.toUpperCase() }}{{ data()?.firstName?.charAt(1)?.toUpperCase() }}
+    }
+  </div>
+  <!-- Show full name -->
+  <div class="info">
+    <p>{{ data()?.firstName }} {{ data()?.lastName }}</p>
+    @if (template()) {
+    <ng-container *ngTemplateOutlet="template()!"></ng-container>
+    }
+  </div>
+</div>

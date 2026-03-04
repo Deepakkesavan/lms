@@ -1,0 +1,91 @@
+/* Force Inter font for this component */
+:host {
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.leave-request {
+  padding: 1rem;
+  height: max-content;
+
+  .leave-request-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    h4 {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.1rem;
+      flex: 1 1 auto;
+    }
+
+    ngce-button {
+      flex-shrink: 0;
+    }
+  }
+
+  .content {
+    .calendar {
+      margin: auto;
+      width: 100%;
+      max-width: 600px; // keeps it centered and limited on large screens
+    }
+  }
+
+  .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+    border-top: 1px solid #eee;
+
+    .container {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      .color-container {
+        width: 1rem;
+        height: 1rem;
+        border-radius: 0.3rem;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .leave-type {
+        font-size: 0.85rem;
+        // color: #333;
+        text-transform: capitalize;
+      }
+    }
+  }
+
+  .apply-leave-styles {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1.8rem;
+  }
+
+  @media (max-width: 768px) {
+    .leave-request-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .footer {
+      justify-content: flex-start;
+    }
+
+    .apply-leave-styles {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+}

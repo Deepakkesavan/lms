@@ -1,0 +1,21 @@
+<ngce-toolbar [fixed]="true" [position]="'top'" [customStyles]="{padding: '.5rem', 
+  backgroundColor:' rgb(59, 2, 59)',
+  display: 'flex',
+  'justify-content': 'space-between',
+  'align-items': 'center'
+  }">
+  <div>
+    <img src="../../../assets/image/clarium-logo.jpg" alt="clarium" style="height: 2.5rem;" />
+  </div>
+  <div class="user-menu">
+    <i class="ngce-user-circle" (click)="toggleMenu()"></i>
+    @if(menuOpen){
+    <div class="menu-dropdown" >
+      <button (click)="logout()">
+        <ngce-icon name="logout-1" color="black" size="15px"></ngce-icon>Logout
+      </button>
+    </div>
+  }
+  </div>
+
+</ngce-toolbar>

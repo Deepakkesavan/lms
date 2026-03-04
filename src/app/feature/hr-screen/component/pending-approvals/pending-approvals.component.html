@@ -1,0 +1,29 @@
+<div>
+    <ngce-card [customStyles]="cardStyle">
+        <ngce-card-content [customStyles]="cardContentStyle">
+
+            <div class="body-container">
+                <lms-user-name-with-icon [data]="getData()" [template]="employeeID"></lms-user-name-with-icon>
+            </div>
+            <div class="details-container">
+                <span [ngStyle]="leaveNameStyle">{{getData().leaveTypeKey}}</span>
+                <span [ngStyle]="leaveDetailStyle">
+                    <div [ngStyle]="calendarStyle">
+                        <ngce-icon [class]="'ngce-calendar-empty'" [size]="'14px'" [color]="'#7f8c8d'"></ngce-icon>
+                        <span [ngStyle]="dateRangeStyle">{{getData().startDate | date : 'dd/MM/YYYY'}} -
+                            {{getData().endDate | date : 'dd/MM/YYYY'}}</span>
+                    </div>
+
+                    <span [style]="dayStyle">
+                        <span [style]="dotStyle"></span>
+                        {{getDays()}} day(s)
+                    </span>
+                </span>
+            </div>
+        </ngce-card-content>
+    </ngce-card>
+</div>
+
+<ng-template #employeeID let-data='id'>
+    <span [ngStyle]="getIdStyling()">{{id()}}</span>
+</ng-template>
