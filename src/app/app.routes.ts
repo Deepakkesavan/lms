@@ -7,9 +7,10 @@ export const lmsRoutes: Routes = [
     path: '',
     loadComponent: () => import('./layout/main-layout/main-layout.component').then(m => m.MainLayoutComponent),
     children: [
-      { path: '', pathMatch: 'full', redirectTo: 'employee' },
+      // { path: '', pathMatch: 'full', redirectTo: 'employee' },
+      // { path: '', redirectTo: '/workforce/lms/employee', pathMatch: 'full' },
       {
-        path: 'employee',
+        path: '',
         loadComponent: () =>
           import('./feature/employee-screen/page/employee/employee.page').then(
             (m) => m.EmployeeComponent
