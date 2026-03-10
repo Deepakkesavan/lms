@@ -7,10 +7,14 @@ export const lmsRoutes: Routes = [
     path: '',
     loadComponent: () => import('./layout/main-layout/main-layout.component').then(m => m.MainLayoutComponent),
     children: [
-      // { path: '', pathMatch: 'full', redirectTo: 'employee' },
-      // { path: '', redirectTo: '/workforce/lms/employee', pathMatch: 'full' },
+      // DEFAULT ROUTE - goes to employee page
+      { 
+        path: '', 
+        pathMatch: 'full', 
+        redirectTo: 'employee' 
+      },
       {
-        path: '',
+        path: 'employee',
         loadComponent: () =>
           import('./feature/employee-screen/page/employee/employee.page').then(
             (m) => m.EmployeeComponent
@@ -30,7 +34,6 @@ export const lmsRoutes: Routes = [
         data: [{ roles: HR_SCREEN_DATA }],
         canActivate: [roleGuard],
       },
-
       {
         path: '**',
         redirectTo: 'employee',
