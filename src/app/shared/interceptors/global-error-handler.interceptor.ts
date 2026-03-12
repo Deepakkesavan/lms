@@ -4,29 +4,10 @@ import { inject } from '@angular/core';
 import { SnackbarService } from '@clarium/ngce-components';
 
 export const globalErrorHandlerInterceptor: HttpInterceptorFn = (req, next) => {
-    // ✅ FIX: Get token from storage
-    const token = sessionStorage.getItem('accessToken') 
-                  || sessionStorage.getItem('token')
-                  || localStorage.getItem('accessToken')
-                  || localStorage.getItem('token');
-
-    // ✅ FIX: Clone request with both credentials AND Authorization header
-    let clonedReq = req.clone({ withCredentials: true });
-    
-    if (token) {
-        clonedReq = clonedReq.clone({
-            setHeaders: {
-                Authorization: `Bearer ${token}`
-            }
-        });
-        console.log('[LMS Interceptor] ✅ Added Authorization header');
-    } else {
-        console.error('[LMS Interceptor] ❌ NO TOKEN FOUND IN STORAGE!');
-    }
-
+    req = req.clone({ withCredentials: true });
     const snackbarService = inject(SnackbarService);
 
-    return next(clonedReq).pipe(
+    return next(req).pipe(
         catchError((error: HttpErrorResponse) => {
             let errorMessage = 'Something went wrong';
 

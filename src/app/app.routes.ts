@@ -7,12 +7,7 @@ export const lmsRoutes: Routes = [
     path: '',
     loadComponent: () => import('./layout/main-layout/main-layout.component').then(m => m.MainLayoutComponent),
     children: [
-      // DEFAULT ROUTE - goes to employee page
-      { 
-        path: '', 
-        pathMatch: 'full', 
-        redirectTo: 'employee' 
-      },
+      { path: '', pathMatch: 'full', redirectTo: 'employee' },
       {
         path: 'employee',
         loadComponent: () =>
@@ -21,19 +16,20 @@ export const lmsRoutes: Routes = [
           ),
       },
       {
-        path: 'approver',
+        path: 'approvals',
         loadComponent: () =>
           import(
             './feature/approver-screen/page/approver-screen.component'
           ).then((m) => m.ApproverScreenComponent),
       },
       {
-        path: 'hr',
+        path: 'leave-overview',
         loadComponent: () =>
           import('./feature/hr-screen/page/hr.page').then((m) => m.HrPage),
         data: [{ roles: HR_SCREEN_DATA }],
         canActivate: [roleGuard],
       },
+
       {
         path: '**',
         redirectTo: 'employee',

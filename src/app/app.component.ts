@@ -1,12 +1,12 @@
 import { CommonModule, Location } from '@angular/common';
 import { Component, inject, ViewEncapsulation } from '@angular/core';
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 
 @Component({
   selector: 'lms-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [CommonModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   encapsulation: ViewEncapsulation.Emulated, // Explicit encapsulation for style isolation
